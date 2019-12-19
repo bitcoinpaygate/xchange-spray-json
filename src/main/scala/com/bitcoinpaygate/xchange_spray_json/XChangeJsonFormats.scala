@@ -50,7 +50,7 @@ trait XChangeJsonFormats extends SprayJsonSupport with DefaultJsonProtocol {
 
   implicit val CurrencyFormat = new JsonFormat[Currency] {
 
-    override def write(x: Currency): JsObject =
+    override def write(x: Currency) =
       JsString(x.getCurrencyCode)
 
     override def read(value: JsValue): Currency = value match {
@@ -61,7 +61,7 @@ trait XChangeJsonFormats extends SprayJsonSupport with DefaultJsonProtocol {
 
   implicit val CurrencyPairFormat = new JsonFormat[CurrencyPair] {
 
-    override def write(x: CurrencyPair): JsObject =
+    override def write(x: CurrencyPair) =
       JsString(s"${x.base}/${x.counter}")
 
     override def read(value: JsValue): CurrencyPair = value match {
