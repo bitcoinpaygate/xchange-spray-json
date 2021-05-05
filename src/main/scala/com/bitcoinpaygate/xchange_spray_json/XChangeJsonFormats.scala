@@ -17,6 +17,8 @@ final private[xchange_spray_json] case class AccountWallet(account: Option[Strin
 
 trait XChangeJsonFormats extends SprayJsonSupport with DefaultJsonProtocol {
 
+  private def error(msgInfix: String, value: JsValue) = deserializationError(s"no parser for $msgInfix defined $value")
+
   private def currencyBalanceMapToScala(map: java.util.Map[Currency, Balance]): List[CurrencyBalance] =
     map.asScala.map {
       case (currency, balance) =>
@@ -55,7 +57,7 @@ trait XChangeJsonFormats extends SprayJsonSupport with DefaultJsonProtocol {
 
     override def read(value: JsValue): Currency = value match {
       case JsString(s) => new Currency(s)
-      case x           => deserializationError("no parser for Currency defined " + x)
+      case x           => error("Currency", x)
     }
   }
 
@@ -66,7 +68,7 @@ trait XChangeJsonFormats extends SprayJsonSupport with DefaultJsonProtocol {
 
     override def read(value: JsValue): CurrencyPair = value match {
       case JsString(s) => stringToCurrencyPair(s)
-      case x           => deserializationError("no parser for CurrencyPair defined " + x)
+      case x           => error("CurrencyPair", x)
     }
   }
 
@@ -89,7 +91,7 @@ trait XChangeJsonFormats extends SprayJsonSupport with DefaultJsonProtocol {
       )
 
     override def read(value: JsValue): Balance = value match {
-      case x => deserializationError("no parser for Balance defined " + x)
+      case x => error("Balance", x)
     }
   }
 
@@ -109,7 +111,7 @@ trait XChangeJsonFormats extends SprayJsonSupport with DefaultJsonProtocol {
       )
 
     override def read(value: JsValue): Wallet = value match {
-      case x => deserializationError("no parser for Wallet defined " + x)
+      case x => error("Wallet", x)
     }
   }
 
@@ -129,7 +131,7 @@ trait XChangeJsonFormats extends SprayJsonSupport with DefaultJsonProtocol {
       )
 
     override def read(value: JsValue): AccountInfo = value match {
-      case x => deserializationError("no parser for AccountInfo defined " + x)
+      case x => error("AccountInfo", x)
     }
   }
 
@@ -138,7 +140,7 @@ trait XChangeJsonFormats extends SprayJsonSupport with DefaultJsonProtocol {
 
     override def read(value: JsValue): OrderType = value match {
       case JsString(s) => OrderType.valueOf(s)
-      case x           => deserializationError("no parser for OrderType defined " + x)
+      case x           => error("OrderType", x)
     }
   }
 
@@ -146,7 +148,7 @@ trait XChangeJsonFormats extends SprayJsonSupport with DefaultJsonProtocol {
     override def write(x: java.util.Date) = JsString(LocalDateTime.ofInstant(x.toInstant, ZoneOffset.UTC).toString)
 
     override def read(value: JsValue): java.util.Date = value match {
-      case x => deserializationError("no parser for java.util.Date defined " + x)
+      case x => error("java.util.Date", x)
     }
   }
 
@@ -166,7 +168,7 @@ trait XChangeJsonFormats extends SprayJsonSupport with DefaultJsonProtocol {
       )
 
     override def read(value: JsValue): LimitOrder = value match {
-      case x => deserializationError("no parser for LimitOrder defined " + x)
+      case x => error("LimitOrder", x)
     }
   }
 
@@ -189,7 +191,7 @@ trait XChangeJsonFormats extends SprayJsonSupport with DefaultJsonProtocol {
       )
 
     override def read(value: JsValue): UserTrade = value match {
-      case x => deserializationError("no parser for UserTrade defined " + x)
+      case x => error("UserTrade", x)
     }
   }
 
@@ -199,7 +201,7 @@ trait XChangeJsonFormats extends SprayJsonSupport with DefaultJsonProtocol {
       removeJsNulls(JsObject(Map("trades" -> Option(x.getUserTrades.asScala.toList).toJson)))
 
     override def read(value: JsValue): UserTrades = value match {
-      case x => deserializationError("no parser for UserTrades defined " + x)
+      case x => error("UserTrades", x)
     }
   }
 }
