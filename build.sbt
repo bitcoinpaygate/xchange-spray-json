@@ -1,6 +1,6 @@
 name := "xchange-spray-json"
 
-ThisBuild / organization := "bitcoinpaygate"
+ThisBuild / organization := "com.bitcoinpaygate"
 
 ThisBuild / version := "0.2.1"
 
