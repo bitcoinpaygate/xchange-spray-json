@@ -3,6 +3,7 @@
 .classpath
 .settings
 .history
+.bsp
 gen
 target
 *.iml
