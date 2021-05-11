@@ -6,8 +6,6 @@ ThisBuild / version := "0.2.1"
 
 ThisBuild / scalaVersion := "2.13.1"
 
-ThisBuild / publishTo := sonatypePublishToBundle.value
-
 scapegoatVersion in ThisBuild := "1.4.1"
 
 libraryDependencies ++= {
