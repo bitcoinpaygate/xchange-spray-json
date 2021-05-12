@@ -2,7 +2,7 @@ name := "xchange-spray-json"
 
 ThisBuild / organization := "com.bitcoinpaygate"
 
-ThisBuild / version := "0.2.1"
+ThisBuild / version := "0.2.2"
 
 ThisBuild / scalaVersion := "2.13.1"
 
