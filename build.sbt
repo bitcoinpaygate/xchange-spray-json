@@ -2,11 +2,14 @@ name := "xchange-spray-json"
 
 ThisBuild / organization := "com.bitcoinpaygate"
 
-ThisBuild / version := "0.2.2"
+ThisBuild / version := "0.2.3"
 
 ThisBuild / scalaVersion := "2.13.1"
 
 scapegoatVersion in ThisBuild := "1.4.1"
+
+sonatypeRepository := "https://s01.oss.sonatype.org/service/local"
+sonatypeCredentialHost := "s01.oss.sonatype.org"
 
 libraryDependencies ++= {
   val xchangeVersion = "4.3.21"

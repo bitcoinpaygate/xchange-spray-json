@@ -1,7 +1,5 @@
 ThisBuild / sonatypeProfileName := "com.bitcoinpaygate"
 
-ThisBuild / sonatypeCredentialHost := "s01.oss.sonatype.org"
-
 ThisBuild / publishMavenStyle := true
 
 ThisBuild / licenses += ("Apache-2.0", url("https://opensource.org/licenses/Apache-2.0"))
